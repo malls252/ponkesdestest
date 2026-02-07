@@ -144,7 +144,7 @@ const Gallery = () => {
 
       {/* Gallery Grid */}
       <section className="py-20 bg-background">
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           {loading ? (
             <div className="text-center py-20">
               <p className="text-muted-foreground">Memuat galeri...</p>
@@ -258,55 +258,52 @@ const Gallery = () => {
         </div>
       </section>
 
-      {/* Modern Light Image Modal */}
+      {/* Modern Light Image Modal - Unified Mobile & Desktop Design */}
       <Dialog open={!!selectedFolder} onOpenChange={(open) => !open && setSelectedFolder(null)}>
-        <DialogContent className="max-w-6xl max-h-[95vh] p-0 border-0 bg-background/95 backdrop-blur-xl [&>button]:hidden">
-          <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl">
+        <DialogContent className="w-[95vw] max-w-lg max-h-[85vh] p-0 border-0 bg-background/95 backdrop-blur-xl [&>button]:hidden rounded-xl overflow-hidden">
+          <div className="relative w-full h-full flex flex-col">
             {/* Header with Folder Info */}
-            <div className="bg-card/80 backdrop-blur-sm border-b border-border/50 p-4 md:p-6">
+            <div className="bg-card/80 backdrop-blur-sm border-b border-border/50 p-3 flex-shrink-0">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-3 md:gap-4">
-                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-primary flex items-center justify-center">
-                    <svg className="w-5 h-5 md:w-6 md:h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center gap-2">
+                  <div className="w-8 h-8 rounded-lg bg-gradient-primary flex items-center justify-center">
+                    <svg className="w-4 h-4 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                     </svg>
                   </div>
-                  <div>
-                    <h2 className="text-lg md:text-xl font-bold text-foreground">{selectedFolder?.name}</h2>
-                    {selectedFolder?.description && (
-                      <p className="text-muted-foreground text-xs md:text-sm">{selectedFolder.description}</p>
-                    )}
+                  <div className="min-w-0 flex-1">
+                    <h2 className="text-sm font-bold text-foreground truncate">{selectedFolder?.name}</h2>
                   </div>
                 </div>
 
                 {/* Close Button */}
                 <button
                   onClick={() => setSelectedFolder(null)}
-                  className="p-1 rounded-full hover:bg-secondary transition-colors"
+                  className="p-2 rounded-full hover:bg-secondary transition-colors flex-shrink-0"
                 >
-                  <X size={16} className="text-muted-foreground" />
+                  <X size={20} className="text-muted-foreground" />
                 </button>
               </div>
             </div>
 
             {/* Main Image Display */}
-            <div className="relative bg-muted/30">
+            <div className="relative flex-1 bg-muted/30 min-h-0 overflow-hidden">
               {/* Navigation Buttons */}
               {selectedFolder && selectedFolder.images.length > 1 && (
                 <>
                   <button
                     onClick={prevImage}
-                    className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 bg-card/90 hover:bg-card shadow-lg backdrop-blur-sm text-foreground p-2 md:p-3 rounded-full transition-all duration-200 hover:scale-110"
+                    className="absolute left-2 top-1/2 -translate-y-1/2 z-20 bg-card/90 hover:bg-card shadow-lg backdrop-blur-sm text-foreground p-2 rounded-full transition-all duration-200 hover:scale-110"
                   >
-                    <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </svg>
                   </button>
                   <button
                     onClick={nextImage}
-                    className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 bg-card/90 hover:bg-card shadow-lg backdrop-blur-sm text-foreground p-2 md:p-3 rounded-full transition-all duration-200 hover:scale-110"
+                    className="absolute right-2 top-1/2 -translate-y-1/2 z-20 bg-card/90 hover:bg-card shadow-lg backdrop-blur-sm text-foreground p-2 rounded-full transition-all duration-200 hover:scale-110"
                   >
-                    <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </button>
@@ -314,62 +311,62 @@ const Gallery = () => {
               )}
 
               {/* Main Image */}
-              <div className="flex items-center justify-center min-h-[40vh] md:min-h-[50vh] max-h-[60vh] md:max-h-[70vh] p-4 md:p-8">
+              <div className="flex items-center justify-center h-full p-2 pb-14">
                 {selectedFolder && selectedFolder.images[selectedImageIndex] && (
-                  <div className="relative max-w-full max-h-full">
+                  <div className="relative w-full h-full flex items-center justify-center">
                     <img
                       src={selectedFolder.images[selectedImageIndex].image_url}
                       alt={selectedFolder.images[selectedImageIndex].title}
-                      className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
+                      className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
                     />
-                    {/* Image Info Overlay - Mobile Optimized */}
-                    <div className="absolute bottom-1 md:bottom-2 left-2 md:left-4 right-2 md:right-4 bg-card/95 backdrop-blur-sm rounded-lg p-2 md:p-3 shadow-lg">
-                      <div className="flex items-center justify-between gap-2">
-                        <div className="flex-1 min-w-0">
-                          <p className="text-muted-foreground text-xs md:text-sm truncate">
-                            {new Date(selectedFolder.images[selectedImageIndex].created_at).toLocaleDateString('id-ID', {
-                              year: 'numeric',
-                              month: 'short',
-                              day: 'numeric'
-                            })}
-                          </p>
-                        </div>
-                        <div className="flex items-center gap-2 flex-shrink-0">
-                          {selectedFolder && (
-                            <span className="text-xs md:text-sm text-muted-foreground bg-secondary px-2 md:px-3 py-1 rounded-full">
-                              {selectedImageIndex + 1} / {selectedFolder.images.length}
-                            </span>
-                          )}
-                          <Button
-                            onClick={handleDownload}
-                            disabled={downloading}
-                            size="sm"
-                            className="bg-primary hover:bg-primary/90 text-xs md:text-sm px-2 md:px-3 h-7 md:h-8"
-                          >
-                            <Download className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
-                            <span className="hidden sm:inline">{downloading ? 'Mengunduh...' : 'Unduh'}</span>
-                            <span className="sm:hidden">↓</span>
-                          </Button>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 )}
               </div>
+
+              {/* Image Info Overlay - Fixed at bottom above thumbnail */}
+              {selectedFolder && selectedFolder.images[selectedImageIndex] && (
+                <div className="absolute bottom-10 left-2 right-2 bg-card/95 backdrop-blur-sm border border-border/50 rounded-lg p-2 shadow-lg z-30">
+                  <div className="flex items-center justify-between gap-2">
+                    <div className="flex-1 min-w-0">
+                      <p className="text-muted-foreground text-xs">
+                        {new Date(selectedFolder.images[selectedImageIndex].created_at).toLocaleDateString('id-ID', {
+                          year: 'numeric',
+                          month: 'short',
+                          day: 'numeric'
+                        })}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2 flex-shrink-0">
+                      <span className="text-xs text-muted-foreground bg-secondary px-2 py-1 rounded-full">
+                        {selectedImageIndex + 1} / {selectedFolder.images.length}
+                      </span>
+                      <Button
+                        onClick={handleDownload}
+                        disabled={downloading}
+                        size="sm"
+                        className="bg-primary hover:bg-primary/90 text-xs px-2 h-7"
+                      >
+                        <Download className="w-3 h-3 mr-1" />
+                        {downloading ? '...' : 'Unduh'}
+                      </Button>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
 
             {/* Thumbnail Strip */}
             {selectedFolder && selectedFolder.images.length > 1 && (
-              <div className="bg-card/50 border-t border-border/50 p-3 md:p-4">
-                <div className="flex justify-center gap-2 md:gap-3 overflow-x-auto max-w-full pb-2">
+              <div className="bg-card/50 border-t border-border/50 p-2 flex-shrink-0">
+                <div className="flex justify-center gap-2 overflow-x-auto max-w-full pb-1 px-2">
                   {selectedFolder.images.map((image, index) => (
                     <button
                       key={image.id}
                       onClick={() => setSelectedImageIndex(index)}
-                      className={`flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
+                      className={`flex-shrink-0 w-10 h-10 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
                         index === selectedImageIndex
-                          ? 'border-primary shadow-lg scale-105 ring-2 ring-primary/20'
-                          : 'border-border hover:border-primary/50 hover:scale-102'
+                          ? 'border-primary shadow-md scale-105'
+                          : 'border-border hover:border-primary/50'
                       }`}
                     >
                       <img

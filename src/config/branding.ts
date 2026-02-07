@@ -1,5 +1,5 @@
 export const branding = {
-    name: "Ponkesdes",
+    name: "Ponkesdes Wiloso",
     description: "Pondok Kesehatan Desa",
     footerDescription: "Pondok Kesehatan Desa - Melayani kesehatan masyarakat dengan sepenuh hati.",
     whatsapp: [
