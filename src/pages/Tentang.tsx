@@ -55,7 +55,7 @@ const Tentang = () => {
   ];
 
   return (
-    <div className="pt-20 min-h-screen bg-background">
+    <div className="pt-20 min-h-screen bg-background w-full">
       {/* Header */}
       <div
         className="relative py-16 md:py-24 overflow-hidden"

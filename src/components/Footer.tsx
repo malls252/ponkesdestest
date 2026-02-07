@@ -7,8 +7,8 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="hidden md:block text-card py-12 md:py-16" style={{ backgroundColor: "#123321" }}>
-      <div className="container mx-auto px-4">
+    <footer className="hidden md:block text-card py-12 md:py-16 w-full" style={{ backgroundColor: "#123321" }}>
+      <div className="container mx-auto px-4 max-w-full">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
           {/* Brand */}
           <div className="space-y-4">

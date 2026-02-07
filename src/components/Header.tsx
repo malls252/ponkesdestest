@@ -1,9 +1,8 @@
 import { useState } from "react";
-import { Menu, X, Phone, Download } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { branding } from "@/config/branding";
-import { usePWA } from "@/hooks/usePWA";
 import {
   Dialog,
   DialogContent,
@@ -58,7 +57,6 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
-  const { isInstallable, installPWA } = usePWA();
 
   const navLinks = [
     { href: "/", label: "Beranda" },
@@ -82,8 +80,8 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 border-b border-border">
-      <div className="container mx-auto px-4">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-card/95 border-b border-border w-full">
+      <div className="container mx-auto px-4 max-w-full">
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2 md:gap-3">
@@ -122,10 +120,6 @@ const Header = () => {
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="outline" size="default" onClick={installPWA}>
-              <Download className="w-4 h-4 mr-2" />
-              Install App
-            </Button>
             <ContactButtons />
             <Button variant="outline" size="default" asChild>
               <Link to="/login">Login Admin</Link>
@@ -165,10 +159,6 @@ const Header = () => {
               </Link>
               <div className="px-4 pt-2">
                 <div className="mb-2">
-                  <Button variant="outline" size="sm" onClick={installPWA} className="w-full mb-2">
-                    <Download className="w-4 h-4 mr-2" />
-                    Install App
-                  </Button>
                   <ContactButtons />
                 </div>
               </div>
