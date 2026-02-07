@@ -18,15 +18,22 @@ export const usePWA = () => {
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
       setIsInstallable(true);
+      console.log('PWA install prompt available');
     };
 
     const handleAppInstalled = () => {
       setDeferredPrompt(null);
       setIsInstallable(false);
+      console.log('PWA installed');
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
     window.addEventListener('appinstalled', handleAppInstalled);
+
+    // Check if already installed
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      setIsInstallable(false);
+    }
 
     return () => {
       window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
@@ -35,19 +42,26 @@ export const usePWA = () => {
   }, []);
 
   const installPWA = async () => {
-    if (!deferredPrompt) return;
-
-    deferredPrompt.prompt();
-    const { outcome } = await deferredPrompt.userChoice;
-
-    if (outcome === 'accepted') {
-      console.log('User accepted the install prompt');
-    } else {
-      console.log('User dismissed the install prompt');
+    if (!deferredPrompt) {
+      console.log('No deferred prompt available');
+      return;
     }
 
-    setDeferredPrompt(null);
-    setIsInstallable(false);
+    try {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+
+      if (outcome === 'accepted') {
+        console.log('User accepted the install prompt');
+      } else {
+        console.log('User dismissed the install prompt');
+      }
+
+      setDeferredPrompt(null);
+      setIsInstallable(false);
+    } catch (error) {
+      console.error('Error installing PWA:', error);
+    }
   };
 
   return { isInstallable, installPWA };

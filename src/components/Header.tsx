@@ -122,12 +122,10 @@ const Header = () => {
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
-            {isInstallable && (
-              <Button variant="outline" size="default" onClick={installPWA}>
-                <Download className="w-4 h-4 mr-2" />
-                Install App
-              </Button>
-            )}
+            <Button variant="outline" size="default" onClick={installPWA}>
+              <Download className="w-4 h-4 mr-2" />
+              Install App
+            </Button>
             <ContactButtons />
             <Button variant="outline" size="default" asChild>
               <Link to="/login">Login Admin</Link>
@@ -167,12 +165,10 @@ const Header = () => {
               </Link>
               <div className="px-4 pt-2">
                 <div className="mb-2">
-                  {isInstallable && (
-                    <Button variant="outline" size="sm" onClick={installPWA} className="w-full mb-2">
-                      <Download className="w-4 h-4 mr-2" />
-                      Install App
-                    </Button>
-                  )}
+                  <Button variant="outline" size="sm" onClick={installPWA} className="w-full mb-2">
+                    <Download className="w-4 h-4 mr-2" />
+                    Install App
+                  </Button>
                   <ContactButtons />
                 </div>
               </div>
