@@ -15,6 +15,7 @@ export const usePWA = () => {
 
   useEffect(() => {
     const handleBeforeInstallPrompt = (e: Event) => {
+      console.log('Before install prompt event fired');
       e.preventDefault();
       setDeferredPrompt(e as BeforeInstallPromptEvent);
       setIsInstallable(true);
@@ -22,17 +23,22 @@ export const usePWA = () => {
     };
 
     const handleAppInstalled = () => {
+      console.log('App installed event fired');
       setDeferredPrompt(null);
       setIsInstallable(false);
-      console.log('PWA installed');
+      console.log('PWA installed successfully');
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
     window.addEventListener('appinstalled', handleAppInstalled);
 
     // Check if already installed
-    if (window.matchMedia('(display-mode: standalone)').matches) {
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+    const isIOSStandalone = (window.navigator as any).standalone === true;
+
+    if (isStandalone || isIOSStandalone) {
       setIsInstallable(false);
+      console.log('App is already installed');
     }
 
     return () => {
@@ -42,14 +48,27 @@ export const usePWA = () => {
   }, []);
 
   const installPWA = async () => {
+    console.log('Install PWA function called');
+
     if (!deferredPrompt) {
-      console.log('No deferred prompt available');
+      console.log('No deferred prompt available - trying fallback');
+
+      // Fallback for browsers that don't support beforeinstallprompt
+      if ('serviceWorker' in navigator && 'caches' in window) {
+        console.log('Service worker and caches available - app should be installable');
+        alert('Untuk menginstall aplikasi, gunakan menu browser Anda (biasanya titik tiga di kanan atas) dan pilih "Add to Home Screen" atau "Install App"');
+      } else {
+        alert('Browser Anda tidak mendukung instalasi PWA. Coba gunakan Chrome, Edge, atau Safari terbaru.');
+      }
       return;
     }
 
     try {
-      deferredPrompt.prompt();
+      console.log('Prompting user for installation');
+      await deferredPrompt.prompt();
+
       const { outcome } = await deferredPrompt.userChoice;
+      console.log('User choice outcome:', outcome);
 
       if (outcome === 'accepted') {
         console.log('User accepted the install prompt');
@@ -61,6 +80,7 @@ export const usePWA = () => {
       setIsInstallable(false);
     } catch (error) {
       console.error('Error installing PWA:', error);
+      alert('Terjadi kesalahan saat menginstall aplikasi. Silakan coba lagi.');
     }
   };
 
