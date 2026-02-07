@@ -100,13 +100,13 @@ const Beranda = () => {
                   <MapPin className="w-6 h-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-foreground mb-2">Alamat Kantor</h3>
+                  <h3 className="text-lg font-bold text-foreground mb-2">Alamat Ponkesdes</h3>
                   <p className="text-muted-foreground leading-relaxed mb-4">
                     Desa Wiloso, Jl. Wiloso Gondowangi, RT.20/RW.04, Gondowangi, Kec. Wagir, Kabupaten Malang.
                   </p>
                   <Button variant="outline" size="sm" className="h-9 gap-2" asChild>
                     <a
-                      href="https://maps.app.goo.gl/eQ6ZrG4xG7hUsVju5"
+                      href="https://maps.app.goo.gl/amTMaJPSXr8wmdWv5"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -118,7 +118,7 @@ const Beranda = () => {
               </div>
               <div className="flex-grow min-h-[400px]">
                 <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d246.92682669924784!2d112.58034965643901!3d-8.016539527906241!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e789d25a20780b9%3A0x775a4a74cb8989e!2sTaman%20Kanak%20Kanak%20Dharma%20Wanita%20-%2002!5e0!3m2!1id!2sid!4v1769871884902!5m2!1sid!2sid"
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.8291449129683!2d112.5808203!3d-8.016548!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e789d001491cca5%3A0x257db84031787a2e!2sPonkesdes%20Wiloso!5e0!3m2!1sid!2sid!4v1770477427702!5m2!1sid!2sid"
                   width="100%"
                   height="100%"
                   style={{ border: 0 }}
