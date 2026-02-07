@@ -205,38 +205,7 @@ const Gallery = () => {
                         </div>
                       )}
 
-                      {/* Premium counter badge with glow effect */}
-                      {folder.images.length > 1 && (
-                        <div className="absolute top-4 right-4 bg-gradient-to-r from-primary via-primary/90 to-primary/80 text-primary-foreground px-4 py-2 rounded-2xl text-sm font-bold shadow-2xl backdrop-blur-md border border-white/30 group-hover:scale-110 group-hover:shadow-primary/25 transition-all duration-500">
-                          <div className="flex items-center gap-2">
-                            <div className="relative">
-                              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M2 6a2 2 0 012-2h6a2 2 0 012 2v8a2 2 0 01-2 2H4a2 2 0 01-2-2V6zM14.553 7.106A1 1 0 0014 8v4a1 1 0 00.553.894l2 1A1 1 0 0018 13V7a1 1 0 00-1.447-.894l-2 1z" />
-                              </svg>
-                              <div className="absolute inset-0 bg-white/20 rounded-full animate-ping" />
-                            </div>
-                            <span>+{folder.images.length - 1}</span>
-                          </div>
-                        </div>
-                      )}
 
-                      {/* Enhanced hover play button with ripple effect */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                        <div className="relative">
-                          <div className="absolute inset-0 bg-white/20 rounded-full animate-ping" style={{ animationDuration: '2s' }} />
-                          <div className="bg-white/95 backdrop-blur-md rounded-2xl p-6 shadow-2xl border border-white/20 hover:scale-110 transition-transform duration-300">
-                            <svg className="w-10 h-10 text-primary drop-shadow-lg" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clipRule="evenodd" />
-                            </svg>
-                          </div>
-                        </div>
-                      </div>
-
-                      {/* Corner accent */}
-                      <div className="absolute top-0 left-0 w-16 h-16 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <div className="absolute top-0 left-0 w-0 h-0 border-l-[16px] border-l-primary border-t-[16px] border-t-transparent" />
-                        <div className="absolute top-1 left-1 w-0 h-0 border-l-[14px] border-l-primary/80 border-t-[14px] border-t-transparent" />
-                      </div>
                     </div>
                   </div>
 
@@ -291,21 +260,21 @@ const Gallery = () => {
 
       {/* Modern Light Image Modal */}
       <Dialog open={!!selectedFolder} onOpenChange={(open) => !open && setSelectedFolder(null)}>
-        <DialogContent className="max-w-6xl max-h-[95vh] p-0 border-0 bg-background/95 backdrop-blur-xl">
+        <DialogContent className="max-w-6xl max-h-[95vh] p-0 border-0 bg-background/95 backdrop-blur-xl [&>button]:hidden">
           <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl">
             {/* Header with Folder Info */}
-            <div className="bg-card/80 backdrop-blur-sm border-b border-border/50 p-6">
+            <div className="bg-card/80 backdrop-blur-sm border-b border-border/50 p-4 md:p-6">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-gradient-primary flex items-center justify-center">
-                    <svg className="w-6 h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="flex items-center gap-3 md:gap-4">
+                  <div className="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-primary flex items-center justify-center">
+                    <svg className="w-5 h-5 md:w-6 md:h-6 text-primary-foreground" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                     </svg>
                   </div>
                   <div>
-                    <h2 className="text-xl font-bold text-foreground">{selectedFolder?.name}</h2>
+                    <h2 className="text-lg md:text-xl font-bold text-foreground">{selectedFolder?.name}</h2>
                     {selectedFolder?.description && (
-                      <p className="text-muted-foreground text-sm">{selectedFolder.description}</p>
+                      <p className="text-muted-foreground text-xs md:text-sm">{selectedFolder.description}</p>
                     )}
                   </div>
                 </div>
@@ -313,9 +282,9 @@ const Gallery = () => {
                 {/* Close Button */}
                 <button
                   onClick={() => setSelectedFolder(null)}
-                  className="p-2 rounded-full hover:bg-secondary transition-colors"
+                  className="p-1 rounded-full hover:bg-secondary transition-colors"
                 >
-                  <X size={24} className="text-muted-foreground" />
+                  <X size={16} className="text-muted-foreground" />
                 </button>
               </div>
             </div>
@@ -327,17 +296,17 @@ const Gallery = () => {
                 <>
                   <button
                     onClick={prevImage}
-                    className="absolute left-4 top-1/2 -translate-y-1/2 z-20 bg-card/90 hover:bg-card shadow-lg backdrop-blur-sm text-foreground p-3 rounded-full transition-all duration-200 hover:scale-110"
+                    className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-20 bg-card/90 hover:bg-card shadow-lg backdrop-blur-sm text-foreground p-2 md:p-3 rounded-full transition-all duration-200 hover:scale-110"
                   >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
                     </svg>
                   </button>
                   <button
                     onClick={nextImage}
-                    className="absolute right-4 top-1/2 -translate-y-1/2 z-20 bg-card/90 hover:bg-card shadow-lg backdrop-blur-sm text-foreground p-3 rounded-full transition-all duration-200 hover:scale-110"
+                    className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-20 bg-card/90 hover:bg-card shadow-lg backdrop-blur-sm text-foreground p-2 md:p-3 rounded-full transition-all duration-200 hover:scale-110"
                   >
-                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className="w-5 h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                     </svg>
                   </button>
@@ -345,7 +314,7 @@ const Gallery = () => {
               )}
 
               {/* Main Image */}
-              <div className="flex items-center justify-center min-h-[50vh] max-h-[70vh] p-8">
+              <div className="flex items-center justify-center min-h-[40vh] md:min-h-[50vh] max-h-[60vh] md:max-h-[70vh] p-4 md:p-8">
                 {selectedFolder && selectedFolder.images[selectedImageIndex] && (
                   <div className="relative max-w-full max-h-full">
                     <img
@@ -353,21 +322,21 @@ const Gallery = () => {
                       alt={selectedFolder.images[selectedImageIndex].title}
                       className="max-w-full max-h-full object-contain rounded-xl shadow-2xl"
                     />
-                    {/* Image Info Overlay */}
-                    <div className="absolute bottom-4 left-4 right-4 bg-card/90 backdrop-blur-sm rounded-lg p-4 shadow-lg">
-                      <div className="flex items-center justify-between">
-                        <div>
-                          <p className="text-muted-foreground text-sm">
+                    {/* Image Info Overlay - Mobile Optimized */}
+                    <div className="absolute bottom-1 md:bottom-2 left-2 md:left-4 right-2 md:right-4 bg-card/95 backdrop-blur-sm rounded-lg p-2 md:p-3 shadow-lg">
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex-1 min-w-0">
+                          <p className="text-muted-foreground text-xs md:text-sm truncate">
                             {new Date(selectedFolder.images[selectedImageIndex].created_at).toLocaleDateString('id-ID', {
                               year: 'numeric',
-                              month: 'long',
+                              month: 'short',
                               day: 'numeric'
                             })}
                           </p>
                         </div>
-                        <div className="flex items-center gap-2">
+                        <div className="flex items-center gap-2 flex-shrink-0">
                           {selectedFolder && (
-                            <span className="text-sm text-muted-foreground bg-secondary px-3 py-1 rounded-full">
+                            <span className="text-xs md:text-sm text-muted-foreground bg-secondary px-2 md:px-3 py-1 rounded-full">
                               {selectedImageIndex + 1} / {selectedFolder.images.length}
                             </span>
                           )}
@@ -375,10 +344,11 @@ const Gallery = () => {
                             onClick={handleDownload}
                             disabled={downloading}
                             size="sm"
-                            className="bg-primary hover:bg-primary/90"
+                            className="bg-primary hover:bg-primary/90 text-xs md:text-sm px-2 md:px-3 h-7 md:h-8"
                           >
-                            <Download className="w-4 h-4 mr-2" />
-                            {downloading ? 'Mengunduh...' : 'Unduh'}
+                            <Download className="w-3 h-3 md:w-4 md:h-4 mr-1 md:mr-2" />
+                            <span className="hidden sm:inline">{downloading ? 'Mengunduh...' : 'Unduh'}</span>
+                            <span className="sm:hidden">↓</span>
                           </Button>
                         </div>
                       </div>
@@ -390,13 +360,13 @@ const Gallery = () => {
 
             {/* Thumbnail Strip */}
             {selectedFolder && selectedFolder.images.length > 1 && (
-              <div className="bg-card/50 border-t border-border/50 p-4">
-                <div className="flex justify-center gap-3 overflow-x-auto max-w-full pb-2">
+              <div className="bg-card/50 border-t border-border/50 p-3 md:p-4">
+                <div className="flex justify-center gap-2 md:gap-3 overflow-x-auto max-w-full pb-2">
                   {selectedFolder.images.map((image, index) => (
                     <button
                       key={image.id}
                       onClick={() => setSelectedImageIndex(index)}
-                      className={`flex-shrink-0 w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
+                      className={`flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
                         index === selectedImageIndex
                           ? 'border-primary shadow-lg scale-105 ring-2 ring-primary/20'
                           : 'border-border hover:border-primary/50 hover:scale-102'
