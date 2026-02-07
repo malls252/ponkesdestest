@@ -1,0 +1,22 @@
+{
+  "name": "Ponkesdes Wiloso",
+  "short_name": "Ponkesdes",
+  "description": "Aplikasi Pelayanan Kesehatan Desa Wiloso",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#123321",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/favicon.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg"
+    },
+    {
+      "src": "/logo.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg"
+    }
+  ]
+}
